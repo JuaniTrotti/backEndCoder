@@ -41,5 +41,4 @@ juan.addMascota('gato');
 console.log(juan.countMasctotas());
 juan.addBook('libro2', 'Marcela');
 juan.addBook('libro4', 'Martin');
-
 console.log(juan.gerBookName());
