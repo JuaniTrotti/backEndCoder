@@ -6,15 +6,44 @@ class user {
         this.mascotas = [mascotas];
     }
 
-    getFullName = () => {}
+    getFullName = () => {
+        return `Su nombre completo es: ${this.nombre} ${this.apellido}`;
+    }
 
-    addMascota = () => {}
+    addMascota = (nombreMas) => {
+        this.mascotas.push(nombreMas);
+    }
 
-    countMasctotas = () => {}
+    countMasctotas = () => {
+        return this.mascotas.length;
+    }
 
-    addBook = () => {}
+    // addBook = (libroObj) => {
+    //     this.libros.push(libroObj);
+    // }
 
-    gerBookName = () => {}
+    addBook = (l, a) => {
+        this.libros.push({
+            nombre: l,
+            autor: a
+        });
+    }
+
+    gerBookName = () => {
+        let arrayLibros = [];
+        this.libros.map((i)=>{
+            arrayLibros.push(` ${i.nombre}`)
+        })
+        return `Nombres de los libros:${arrayLibros}`;
+    }
 }
 
-console.log("hola");
+
+const juan = new user('juan', 'perez', {nombre: "libro1", autor: "Martin"}, 'perro');
+console.log(juan.getFullName());
+juan.addMascota('gato');
+console.log(juan.countMasctotas());
+juan.addBook('libro2', 'Marcela');
+juan.addBook('libro4', 'Martin');
+
+console.log(juan.gerBookName());
