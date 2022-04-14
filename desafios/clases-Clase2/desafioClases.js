@@ -18,10 +18,6 @@ class user {
         return this.mascotas.length;
     }
 
-    // addBook = (libroObj) => {
-    //     this.libros.push(libroObj);
-    // }
-
     addBook = (l, a) => {
         this.libros.push({
             nombre: l,
