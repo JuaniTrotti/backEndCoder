@@ -1,0 +1,38 @@
+[
+  [
+    [
+      {
+        "id": 0,
+        "pro": {
+          "nombre": "producto",
+          "precio": "100",
+          "descripcion": "descripcion"
+        }
+      },
+      {
+        "id": 0,
+        "pro": {
+          "nombre": "producto",
+          "precio": "100",
+          "descripcion": "descripcion"
+        }
+      }
+    ],
+    {
+      "id": 0,
+      "pro": {
+        "nombre": "producto3",
+        "precio": "500",
+        "descripcion": "descripcion"
+      }
+    }
+  ],
+  {
+    "id": 0,
+    "pro": {
+      "nombre": "producto2",
+      "precio": "500",
+      "descripcion": "descripcion"
+    }
+  }
+]

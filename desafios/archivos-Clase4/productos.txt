@@ -1,0 +1,2 @@
+{"id":0,"nombre":"producto2","precio":"500","descripcion":"descripcion"}
+{"id":0,"nombre":"producto","precio":"100","descripcion":"descripcion"}
