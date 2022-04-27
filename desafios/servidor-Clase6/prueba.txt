@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Laptop",
+    "price": 20000,
+    "thumbnail": "laptop.jpg",
+    "id": 1
+  },
+  {
+    "title": "Tablet",
+    "price": 5000,
+    "thumbnail": "tablet.jpg",
+    "id": 3
+  }
+]
