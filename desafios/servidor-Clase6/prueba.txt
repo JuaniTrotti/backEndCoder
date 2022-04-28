@@ -6,9 +6,51 @@
     "id": 1
   },
   {
+    "title": "Television",
+    "price": 10000,
+    "thumbnail": "tv.jpg",
+    "id": 2
+  },
+  {
     "title": "Tablet",
     "price": 5000,
     "thumbnail": "tablet.jpg",
     "id": 3
+  },
+  {
+    "title": "Smartphone",
+    "price": 3000,
+    "thumbnail": "smartphone.jpg",
+    "id": 4
+  },
+  {
+    "title": "Celular",
+    "price": 1000,
+    "thumbnail": "celular.jpg",
+    "id": 5
+  },
+  {
+    "title": "Computadora",
+    "price": 5000,
+    "thumbnail": "computadora.jpg",
+    "id": 6
+  },
+  {
+    "title": "Impresora",
+    "price": 2000,
+    "thumbnail": "impresora.jpg",
+    "id": 7
+  },
+  {
+    "title": "Mouse",
+    "price": 500,
+    "thumbnail": "mouse.jpg",
+    "id": 8
+  },
+  {
+    "title": "Teclado",
+    "price": 1000,
+    "thumbnail": "teclado.jpg",
+    "id": 9
   }
 ]
