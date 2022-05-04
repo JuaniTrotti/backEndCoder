@@ -38,3 +38,4 @@ app.get('/productos', async function (req, res) {
     const data = await all();
     res.send({data});
 })
+
