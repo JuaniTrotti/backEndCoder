@@ -107,24 +107,26 @@ async function getAll() {
     console.log(res);
 }
 
-cargarProductos(productosTienda);
+// cargarProductos(productosTienda);
 
-setTimeout(() => {
-    getAll();
-}, 1000);
+// setTimeout(() => {
+//     getAll();
+// }, 1000);
 
-setTimeout(() => {
-    getById(2);
-}, 2000);
+// setTimeout(() => {
+//     getById(2);
+// }, 2000);
 
 setTimeout(() => {
     deleteById(2);
 }, 3000);
 
-setTimeout(() => {
-    getAll();
-}, 4000);
+// setTimeout(() => {
+//     getAll();
+// }, 4000);
 
-setTimeout(() => {
-    deleteAll();
-}, 5000);
+// setTimeout(() => {
+//     deleteAll();
+// }, 5000);
+
+
