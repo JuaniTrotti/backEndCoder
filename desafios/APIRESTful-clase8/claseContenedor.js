@@ -54,6 +54,7 @@ class Contenedor {
         }
     }
 
+    //altera el orden del json, para no iterar sobre todos los elementos
     async update(obj, id) {  
         try {
             let data = await this.getAll();
