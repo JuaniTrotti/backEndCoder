@@ -98,6 +98,16 @@ class Contenedor {
             console.log("error al eliminar" + error)
         }
     }
+
+    async returnLast() {
+        try {
+            let data = await this.getAll();
+            return data[data.length - 1];
+        }
+        catch (err) {
+            console.log("error al eliminar" + err)
+        }
+    }
 }
 
 module.exports = Contenedor;

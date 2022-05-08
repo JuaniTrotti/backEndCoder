@@ -14,7 +14,6 @@ app.use('/api', productRouter);
 
 //Vars
 // let dirName = __dirname;
-let idCount = 0;
 
 //Multer config
 var storage = multer.diskStorage({
@@ -28,20 +27,20 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 //EndPoints
-productRouter.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(dirName + '/index.html');
 });
 
 productRouter.post('/productos', async function (req, res){
     let archivo = new claseContenedor('./uploads/productos.json');
     await archivo.save(req.body);
-    idCount++;
-    res.send(await archivo.getById(idCount));
+    res.send(await archivo.returnLast());
+    // res.json(data[data.length].id);
 });
 
 productRouter.get('/productos', async function (req, res) {
     let archivo = new claseContenedor('./uploads/productos.json');
-    res.send(await archivo.getAll());
+    res.json(await archivo.getAll());
 });
 
 productRouter.put('/productos/:id', async function (req, res) {
@@ -56,9 +55,26 @@ productRouter.delete('/productos/:id', async function (req, res) {
     res.send(await archivo.getAll());
 });
 
+
+//elimina todos los productos desde un boton en la pagina
+productRouter.post('/eliminar', async function (req, res) {
+    let archivo = new claseContenedor('./uploads/productos.json');
+    await archivo.deleteAll();
+    res.send(await archivo.getAll());
+});
+
+
 //Server config
 const PORT = 8080;
 const server = app.listen(PORT, () => {
     console.log(`Server running on port ${server.address().port}`);
 })
 server.on('error', err => console.log(`Server error ${err}`));
+
+
+// setTimeout(async function() {
+//     let archivo = new claseContenedor('./uploads/productos.json');
+//     let data = await archivo.returnLast();
+//     // console.log(typeof data);
+//     console.log(data)
+// } , 1000);
