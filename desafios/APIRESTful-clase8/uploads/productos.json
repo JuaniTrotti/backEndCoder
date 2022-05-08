@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "title": "tienda",
+    "price": "1500",
+    "tumbnail": "jwkdhqwekjdb",
+    "id": 1
+  },
+  {
+    "title": "lknlkn",
+    "price": "9090",
+    "tumbnail": "oijoih",
+    "id": 3
+  }
+]

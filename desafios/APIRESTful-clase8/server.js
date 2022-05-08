@@ -12,19 +12,16 @@ app.use(express.static('public'));
 
 app.use('/api', productRouter);
 
-//Vars
-// let dirName = __dirname;
-
 //Multer config
-var storage = multer.diskStorage({
-	destination: function(req, file, cb) {
-		cb(null, 'uploads')
-	},
-	filename: function(req, file, cb) {
-	 cb(null, `${Date.now()}-${file.originalname}`)
-	}
-})
-var upload = multer({ storage: storage })
+// var storage = multer.diskStorage({
+// 	destination: function(req, file, cb) {
+// 		cb(null, 'uploads')
+// 	},
+// 	filename: function(req, file, cb) {
+// 	 cb(null, `${Date.now()}-${file.originalname}`)
+// 	}
+// })
+// var upload = multer({ storage: storage })
 
 //EndPoints
 app.get('/', (req, res) => {
@@ -35,7 +32,6 @@ productRouter.post('/productos', async function (req, res){
     let archivo = new claseContenedor('./uploads/productos.json');
     await archivo.save(req.body);
     res.send(await archivo.returnLast());
-    // res.json(data[data.length].id);
 });
 
 productRouter.get('/productos', async function (req, res) {
@@ -45,8 +41,11 @@ productRouter.get('/productos', async function (req, res) {
 
 productRouter.put('/productos/:id', async function (req, res) {
     let archivo = new claseContenedor('./uploads/productos.json');
-    await archivo.update(req.body, req.params.id);
-    res.send(await archivo.getAll());
+    if (await archivo.update(req.body, req.body.id) !== undefined) {
+        res.send(await archivo.getById(req.body.id));
+    } else {
+        res.send("no existe el producto con id: " + req.body.id);
+    }
 })
 
 productRouter.delete('/productos/:id', async function (req, res) {
@@ -60,9 +59,28 @@ productRouter.delete('/productos/:id', async function (req, res) {
 productRouter.post('/eliminar', async function (req, res) {
     let archivo = new claseContenedor('./uploads/productos.json');
     await archivo.deleteAll();
-    res.send(await archivo.getAll());
+    res.send("se elimino todo");
 });
 
+//actualiza un producto desde la pagina por id
+productRouter.post('/actualizar', async function (req, res) {
+    let archivo = new claseContenedor('./uploads/productos.json');
+    if (await archivo.update(req.body, req.body.id) !== undefined) {
+        res.send(await archivo.getById(req.body.id));
+    } else {
+        res.send("no existe el producto con id: " + req.body.id);
+    }
+})
+
+//elimna un producto desde la pagina por id
+productRouter.post('/eliminarId', async function(req, res) {
+    let archivo = new claseContenedor('./uploads/productos.json');
+    if (await archivo.deleteById(req.body.id) !== undefined) {
+        res.send("Se elimino el producto con id: " + req.body.id);
+    } else {
+        res.send("No se encontro el producto con id: " + req.body.id);
+    }
+})
 
 //Server config
 const PORT = 8080;
@@ -72,9 +90,3 @@ const server = app.listen(PORT, () => {
 server.on('error', err => console.log(`Server error ${err}`));
 
 
-// setTimeout(async function() {
-//     let archivo = new claseContenedor('./uploads/productos.json');
-//     let data = await archivo.returnLast();
-//     // console.log(typeof data);
-//     console.log(data)
-// } , 1000);
