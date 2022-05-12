@@ -1,0 +1,16 @@
+<% if(datos.length > 0){ %>
+    <div>
+        <table>
+            <tr> <th>Nombre</th> <th>Apellido</th> <th>Edad</th> </tr>
+            <% for (const persona of datos) {%>
+            <tr>
+                <td><%=persona.title%></td>
+                <td><%=persona.price%></td>
+                <td><%=persona.tumbnail%></td>
+            </tr>
+            <%};%>
+        </table>
+    </div>
+<% } else{ %>
+    <h3>no se encontraron datos</h1>
+<% } %>
