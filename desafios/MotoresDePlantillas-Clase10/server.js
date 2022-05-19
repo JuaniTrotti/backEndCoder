@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', productRouter);
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
+app.use('/assets', express.static(path.join(__dirname, '../public')))
 
 
 //Navegar entre paginas
