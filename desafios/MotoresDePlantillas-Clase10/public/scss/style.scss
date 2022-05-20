@@ -1,16 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .cFlex {
     display: flex;
 }
 
 body {
     background-color: #201e3d;
+    height: 100vh;
 }
 
-.inputContainer {
-    background-color: #3a3672;
+.pagContainer {
     justify-content: center;
     align-items: center;
+    
+    width: 100%;
+    height: 100%;
+    
+    .inputContainer {
+        flex-direction: column;
+        width: 500px;
+        height: 400px;
+        background-color: #3a3672;
 
-    width: 40%;
-    height: 65vh;
+        .containerInput {
+            width: 100%;
+            height: 80%;
+            flex-direction: column;
+            align-items: center;
+
+            h2 {
+                color: white;
+                margin: 15px 0;
+            }
+
+            form {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                width: 80%;
+                gap: 10px;
+                color: white;
+
+                input {
+                    all: unset;
+                    width: 100%;
+                    border: 1px solid white;
+                    border-radius: 2px;
+                }
+            }
+
+            .histContainer {
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                width: 90%;
+                height: auto;
+                border: 0.5px solid #191736;
+                border-radius: 2px;
+                margin: 5px 0;
+                padding: 0 5px;
+
+                .nombreContainer {
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    width: 100%;
+
+                    .producto {
+                        width: 100%;
+                        height: 100%;
+                        justify-content: space-between;
+                        align-items: center;
+    
+                        h3 {
+                            color: #191736;
+                            margin: 0;
+                        }
+    
+                        .fotoContainer {
+                            align-items: center;
+                            justify-content: flex-end;
+                            width: 50%;
+                            height: 100%;
+                            
+                            .foto {
+                                width: 30px;
+                                height: 30px;
+        
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .buttonContainer {
+            width: 100%;
+            height: 20%;
+            align-items: center;
+            justify-content: center;
+        }
+    }
 }

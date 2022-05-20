@@ -1,26 +1,20 @@
 [
   {
-    "title": "Producto1",
-    "price": "222",
-    "tumbnail": "dsfndsfjkln",
+    "title": "css",
+    "price": "1222",
+    "tumbnail": "https://img.icons8.com/material-outlined/344/css.png",
     "id": 1
   },
   {
-    "title": "jknjkn",
-    "price": "9889",
-    "tumbnail": "kjnkjn",
+    "title": "regla",
+    "price": "800",
+    "tumbnail": "https://img.icons8.com/wired/344/horizontal-line.png",
     "id": 2
   },
   {
-    "title": "9889",
-    "price": "8989",
-    "tumbnail": "jknkj",
+    "title": "Auriculares",
+    "price": "1900",
+    "tumbnail": "https://img.icons8.com/material-outlined/344/headphones.png",
     "id": 3
-  },
-  {
-    "title": "lknkln",
-    "price": "9009",
-    "tumbnail": "lknlk",
-    "id": 4
   }
 ]

@@ -1,17 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .cFlex {
   display: flex;
 }
 
 body {
   background-color: #201e3d;
+  height: 100vh;
 }
 
-.inputContainer {
-  background-color: #3a3672;
+.pagContainer {
   justify-content: center;
   align-items: center;
-  width: 40%;
-  height: 65vh;
+  width: 100%;
+  height: 100%;
+}
+.pagContainer .inputContainer {
+  flex-direction: column;
+  width: 500px;
+  height: 400px;
+  background-color: #3a3672;
+}
+.pagContainer .inputContainer .containerInput {
+  width: 100%;
+  height: 80%;
+  flex-direction: column;
+  align-items: center;
+}
+.pagContainer .inputContainer .containerInput h2 {
+  color: white;
+  margin: 15px 0;
+}
+.pagContainer .inputContainer .containerInput form {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 80%;
+  gap: 10px;
+  color: white;
+}
+.pagContainer .inputContainer .containerInput form input {
+  all: unset;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 2px;
+}
+.pagContainer .inputContainer .containerInput .histContainer {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  height: auto;
+  border: 0.5px solid #191736;
+  border-radius: 2px;
+  margin: 5px 0;
+  padding: 0 5px;
+}
+.pagContainer .inputContainer .containerInput .histContainer .nombreContainer {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+.pagContainer .inputContainer .containerInput .histContainer .nombreContainer .producto {
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.pagContainer .inputContainer .containerInput .histContainer .nombreContainer .producto h3 {
+  color: #191736;
+  margin: 0;
+}
+.pagContainer .inputContainer .containerInput .histContainer .nombreContainer .producto .fotoContainer {
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  height: 100%;
+}
+.pagContainer .inputContainer .containerInput .histContainer .nombreContainer .producto .fotoContainer .foto {
+  width: 30px;
+  height: 30px;
+}
+.pagContainer .inputContainer .containerInput .histContainer .nombreContainer .producto .fotoContainer .foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pagContainer .inputContainer .buttonContainer {
+  width: 100%;
+  height: 20%;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=style.css.map */

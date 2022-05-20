@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/scss/style.css" type="text/css">
+    <link rel="stylesheet" href="scss/style.css" type="text/css">
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <%- include('../partials/historial')-%>
+    <div class="pagContainer cFlex">
+        <div class="inputContainer cFlex">
+            <div class="containerInput cFlex">
+                <%- include('../partials/historial')-%>
+            </div>
+        
+            <div class="buttonContainer cFlex">
+                <form action="/" method="get">
+                    <input type="submit" value="Cargar Productos">
+                </form>
+            </div>
+        </div>
     </div>
-
-    <form action="/" method="get">
-        <input type="submit" value="Cargar Productos">
-    </form>
 </body>
 </html>

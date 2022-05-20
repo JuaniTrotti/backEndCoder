@@ -1,15 +1,19 @@
+
 <% if(datos.length > 0){ %>
-    <div>
-        <table>
-            <tr> <th>Nombre</th> <th>Apellido</th> <th>Edad</th> </tr>
+    <div class="histContainer cFlex">
+        <div class="nombreContainer cFlex">
             <% for (const persona of datos) {%>
-            <tr>
-                <td><%=persona.title%></td>
-                <td><%=persona.price%></td>
-                <td><%=persona.tumbnail%></td>
-            </tr>
+                <div class="producto cFlex">
+                    <h3><%=persona.title%></h3>
+                    <h3>$<%=persona.price%></h3>
+                    <div class="fotoContainer cFlex">
+                        <div class="foto cFlex">
+                            <img src="<%= persona.tumbnail %>" alt="">
+                        </div>
+                    </div>
+                </div>
             <%};%>
-        </table>
+        </div>
     </div>
 <% } else{ %>
     <h3>no se encontraron datos</h1>
