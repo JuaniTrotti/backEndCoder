@@ -1,8 +1,14 @@
 [
   {
-    "title": "producto1",
-    "price": "1200",
-    "tumbnail": "imagen1",
+    "title": "Tablet",
+    "price": "65000",
+    "tumbnail": "https://img.icons8.com/material-outlined/2x/android-tablet.png",
     "id": 1
+  },
+  {
+    "title": "Telefono",
+    "price": "95000",
+    "tumbnail": "https://img.icons8.com/ios-filled/2x/windows-mobile.png",
+    "id": 2
   }
 ]

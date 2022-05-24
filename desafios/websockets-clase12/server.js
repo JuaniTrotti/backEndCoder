@@ -32,12 +32,11 @@ const productos = new claseContenedor('./uploads/productos.json');
 
 io.on('connection', async (socket) => {
     socket.emit('messages', messages)
-    socket.emit('muestroProductos', await productos.getAll())
+    socket.emit('muestroProductos')
 
     socket.on('new-product', async (data) => {
         await productos.save(data);
-        const datos = await productos.getAll();
-        io.socket.emit('muestroProductos', datos)
+        io.sockets.emit('muestroProductos')
     })
 
     socket.on('new-message', data => {
