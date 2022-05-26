@@ -1,26 +1,14 @@
 [
   {
-    "title": "Telefono",
-    "price": "95000",
-    "tumbnail": "https://img.icons8.com/ios-filled/2x/windows-mobile.png",
+    "title": "tren",
+    "price": "100",
+    "tumbnail": "imagen1",
     "id": 1
   },
   {
-    "title": "Telefono",
-    "price": "95000",
-    "tumbnail": "https://img.icons8.com/ios-filled/2x/windows-mobile.png",
+    "title": "tren",
+    "price": "100",
+    "tumbnail": "imagen1",
     "id": 2
-  },
-  {
-    "title": "Telefono",
-    "price": "95000",
-    "tumbnail": "https://img.icons8.com/ios-filled/2x/windows-mobile.png",
-    "id": 3
-  },
-  {
-    "title": "Telefono",
-    "price": "95000",
-    "tumbnail": "https://img.icons8.com/ios-filled/2x/windows-mobile.png",
-    "id": 4
   }
 ]

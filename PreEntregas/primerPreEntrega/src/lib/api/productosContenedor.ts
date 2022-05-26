@@ -1,5 +1,37 @@
 const fs = require('fs');
 
+// export class producto {
+//     nombre: string
+//     descripcion: string
+//     codigo: string
+//     precio: number
+//     url: string
+//     stock: number
+//     timestamp: number
+
+//     constructor(nombre: string,descripcion: string,codigo: string,precio: number,url: string,stock: number,) {
+//         this.nombre = nombre;
+//         this.descripcion = descripcion;
+//         this.codigo = codigo;
+//         this.precio = precio;
+//         this.url = url;
+//         this.stock = stock;
+//         this.timestamp = Date.now();
+//     }
+// }
+
+// export function newProduct(reqbody: object) {
+//     return ({
+//         nombre: reqbody.nombre,
+//         descripcion: "",
+//         codigo: "",
+//         precio: 0,
+//         url: "",
+//         stock: 0,
+//         timestamp: Date.now()
+//     })
+// }
+
 export class productManage {
     ruta: string;
 

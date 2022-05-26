@@ -1,5 +1,5 @@
 const express = require("express");
-const { productManage, producto } = require("./lib/api/productosContenedor");
+const { productManage } = require("./lib/api/productosContenedor");
 const { checkAuth } = require("./lib/api/auth");
 
 const { Router } = express;
@@ -23,8 +23,7 @@ productosRouter.get('/:id?', async (req, res) => {
     let archivo = new productManage('./src/uploads/productos.json');
     if (id === undefined) {
         let datos = await archivo.getAll();
-        let prod = new producto("lapi", "buenisima", "vb", 200, "urldelafoto", 3);
-        res.json(datos, prod);
+        res.json(datos);
     } else {
         let producto = await archivo.getById(id);
         if(producto === undefined) {
@@ -36,8 +35,10 @@ productosRouter.get('/:id?', async (req, res) => {
 productosRouter.post('/', async (req, res) => {
     if (checkAuth()) {
         let archivo = new productManage('./src/uploads/productos.json');
-        let prod = new producto(req.body);
-        await archivo.save(prod);
+        // let prod = new producto(req.body);
+        // await archivo.save(prod);
+        await archivo.save(req.body);
+        res.json("producto guardado");
     } else {
         res.json("no esta autorizado");
     }
@@ -49,8 +50,9 @@ productosRouter.put('/:id', async (req, res) => {
         if (await archivo.getById(id) === undefined) {
             res.json("no existe el producto");
         } else {
-            let prod = new producto(req.body);
-            await archivo.update(id, prod);
+            // let prod = new producto(req.body);
+            await archivo.update(req.body, id);
+            res.json("actualizado") //lo dejo asi porque no tengo el front para cargar producto
         }
     } else {
         res.json("no esta autorizado");
