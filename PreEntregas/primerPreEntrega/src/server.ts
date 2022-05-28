@@ -1,5 +1,6 @@
 const express = require("express");
-const { productManage } = require("./lib/api/productosContenedor");
+const { productManage } = require("./lib/api/productos/productosContenedor");
+const { carritoManage } = require("./lib/api/carrito/carritoUsuarios");
 const { checkAuth } = require("./lib/api/auth");
 
 const { Router } = express;
@@ -70,11 +71,33 @@ productosRouter.delete('/:id', async (req, res) => {
 })
 
 // Carrito endpoint
-// carritoRouter.post()
-// carritoRouter.delete()
-// carritoRouter.get()
-// carritoRouter.post()
-// carritoRouter.delete()
+carritoRouter.post('/', async (req, res) => {
+    let carrito = new carritoManage('./src/uploads/carrito.json');
+    await carrito.createCarrito(req.body)
+    res.json("seguardo");
+})
+
+carritoRouter.delete('/:id', async (req, res) => {
+    let carrito = new carritoManage('./src/uploads/carrito.json');
+    res.json(await carrito.deleteCarritoById(req.params.id));
+})
+
+carritoRouter.get('/:id/productos', async (req, res) => {
+    let carrito = new carritoManage('./src/uploads/carrito.json');
+    res.json(await carrito.carritoById(req.params.id));
+})
+
+carritoRouter.post('/:id?/productos', async (req, res) => {
+    let carrito = new carritoManage('./src/uploads/carrito.json');
+    await carrito.pushProduct(req.params.id, req.body);
+    res.json("se agrego el producto");
+})
+
+carritoRouter.delete('/:idCarr/productos/:idProd', async (req, res) => {
+    let carrito = new carritoManage('./src/uploads/carrito.json');
+    await carrito.deleteProductById(req.params.idCarr, req.params.idProd);
+    res.json("se elimino el producto");
+})
 
 
 // Server Config

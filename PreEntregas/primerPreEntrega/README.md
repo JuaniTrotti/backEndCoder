@@ -16,11 +16,12 @@ DELETE /:id // Borra un producto por su id (solo para administradores)
 
 ### /api/carrito
 
-POST / // Crea un carrito y devuleve su id
-DELETE /:id // Vacia un carrito y lo elimina
-GET /:id/productos // lista todos los productos guardados en el carrito 
-POST /:id/productos // incorpora productos al carrito por su id del producto  
-DELETE /:id/productos/:id_prod // Elimina un producto del carrito por su id de carrito y de producto
+POST / // Crea un carrito y devuleve su id - createCarrito()
+DELETE /:id // Vacia un carrito y lo elimina - deleteCarritoById()
+GET /:id/productos // lista todos los productos guardados en el carrito - getProductsCarritoById()
+POST /:id/productos // incorpora productos al carrito por su id del producto
+-  pushProduct()
+DELETE /:id/productos/:id_prod // Elimina un producto del carrito por su id de carrito y de producto - deleteProductById()
 
 // id == id del carrito // id_prod == id del producto //
 
