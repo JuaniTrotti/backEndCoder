@@ -10,9 +10,9 @@ const { ClienteMariaDB } = require("./lib/mariadb/productosMariaDB")
 const { options } = require("./lib/mariadb/mariaDB")
 
 const { createTablesSqlite } = require('./lib/sqlite/setterSqlite');
-const { createTablesMariaDB } = require('./lib/mariadb/setterMaria');
+// const { createTablesMariaDB } = require('./lib/mariadb/setterMaria');
 createTablesSqlite();
-createTablesMariaDB();
+// createTablesMariaDB();
 
 const app = express();
 const httpServer = new HttpServer(app);
