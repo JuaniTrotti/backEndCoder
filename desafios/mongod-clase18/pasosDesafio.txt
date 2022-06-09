@@ -1,0 +1,78 @@
+mongod --dbpath "D:\CoderHouse\CarreraFullStack\BaseMongo"
+
+//en otro CLI
+mongo
+use ecommerce
+
+//creamos las coleciones "productos" y "mensajes" con elementos 
+db.productos.insertMany([
+	{title:'mouse', price:2000, thumbnail:'imagen1'},
+	{title:'keyboard', price:2500, thumbnail:'imagen2'},
+	{title:'monitor', price:4900, thumbnail:'imagen3'},
+	{title:'microphone', price:2000, thumbnail:'imagen4'},
+	{title:'headphones', price:1000, thumbnail:'imagen5'},
+	{title:'desk chair', price:4500, thumbnail:'imagen6'},
+	{title:'mousepad', price:1500, thumbnail:'imagen7'},
+	{title:'backlight', price:800, thumbnail:'imagen8'},
+	{title:'desk light', price:3500, thumbnail:'imagen9'},
+	{title:'desk', price:3000, thumbnail:'imagen10'}
+])
+
+db.mensajes.insertMany([{
+	{email:'1@gmail.com', mensaje:'hola'},
+	{email:'2@gmail.com', mensaje:'hola'},
+	{email:'3@gmail.com', mensaje:'hola'},
+	{email:'4@gmail.com', mensaje:'hola'},
+	{email:'5@gmail.com', mensaje:'hola'},
+	{email:'6@gmail.com', mensaje:'hola'},
+	{email:'7@gmail.com', mensaje:'hola'},
+	{email:'8@gmail.com', mensaje:'hola'},
+	{email:'9@gmail.com', mensaje:'hola'},
+	{email:'10@gmail.com', mensaje:'hola'}
+])
+
+//vemos las clases
+db.productos.find()
+db.mensajes.find()
+
+//vemos la cantidad de documentos de cada coleccion
+db.productos.find().count()
+db.mensajes.find().count()
+
+//agregamos un elemento mas a productos
+db.productos.insert({title:'pad', price: 500, thumbnail:'imagen11'})
+
+//mostramos datos de un producto
+///precio menor a 1000
+db.productos.find({price:{$lt:1000}})
+
+///precio entre 1000 y 3000
+db.productos.find({$and: [{price:{$gte:1000}}, {price:{$lte:3000}}]})
+
+///precio mayor a 3000
+db.productos.find({price:{$gt:3000}})
+
+///devolver el nombre del tercer producto mas barato
+db.productos.find({}).sort({'price': 1}).skip(2).limit(1)
+
+//le agregamos el campos "stock" a productos
+db.productos.updateMany({}, {$set:{stock:100}})
+
+//stock 0 a produtos > 4000 pesos
+db.productos.updateMany({price:{$gt:4000}}, {$set:{stock:0}})
+
+//borrar los productos < 1000 pesos
+db.productos.deleteMany({price:{$lt:1000}})
+
+//crear usuario admin
+use admin
+db.createUser({user:'pepe', pwd:'asd456', roles:[{role:'read', db:'ecommerce'}]})
+db.createUser({user:'admin', pwd:'admin', roles:[{role:'readWrite', db:'ecommerce'}]})
+
+//me conecto como pepe
+mongo -u pepe -p asd456
+
+//me conecto a mongo como admin
+mongo -u admin -p admin
+
+
