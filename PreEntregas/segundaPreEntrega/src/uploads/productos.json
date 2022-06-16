@@ -12,15 +12,9 @@
     "id": 2
   },
   {
-    "timestamp": "Date.now()",
-    "productos": [
-      {
-        "title": "tren",
-        "price": "100",
-        "tumbnail": "imagen1",
-        "id": 1
-      }
-    ],
+    "title": "auto",
+    "price": "200",
+    "tumbnail": "imagen1",
     "id": 3
   }
 ]
