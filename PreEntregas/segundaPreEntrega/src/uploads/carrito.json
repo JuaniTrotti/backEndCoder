@@ -1,0 +1,38 @@
+[
+  {
+    "timetamp": "ahora",
+    "productos": [
+      {
+        "title": "auto",
+        "price": "200",
+        "tumbnail": "imagen1",
+        "id": 2
+      }
+    ],
+    "id": 1
+  },
+  {
+    "timetamp": "ahora",
+    "productos": [
+      {
+        "title": "auto",
+        "price": "200",
+        "tumbnail": "imagen1",
+        "id": 5
+      },
+      {
+        "title": "auto",
+        "price": "200",
+        "tumbnail": "imagen1",
+        "id": 6
+      },
+      {
+        "title": "auto",
+        "price": "200",
+        "tumbnail": "imagen1",
+        "id": 7
+      }
+    ],
+    "id": 3
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "tren",
+    "price": "100",
+    "tumbnail": "imagen1",
+    "id": 1
+  },
+  {
+    "title": "tren",
+    "price": "100",
+    "tumbnail": "imagen1",
+    "id": 2
+  },
+  {
+    "timestamp": "Date.now()",
+    "productos": [
+      {
+        "title": "tren",
+        "price": "100",
+        "tumbnail": "imagen1",
+        "id": 1
+      }
+    ],
+    "id": 3
+  }
+]
