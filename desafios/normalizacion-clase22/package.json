@@ -1,5 +1,5 @@
 {
-  "name": "websockets-clase12",
+  "name": "normalizacion-clase22",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -13,7 +13,6 @@
   "dependencies": {
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "mongoose": "^6.4.0",
     "nodemon": "^2.0.16",
     "sass": "^1.52.1",
     "socket.io": "^4.5.1"
