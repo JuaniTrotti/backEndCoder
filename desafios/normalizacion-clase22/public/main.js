@@ -48,7 +48,7 @@ async function renderProductos() {
                     <div class="nombreContainer cFlex">
                         <div class="producto cFlex">
                             <h3>${elem.title}</h3>
-                            <h3>$${elem.price}</h3>
+                            <h4>$${elem.price}</h3>
                             <div class="fotoContainer cFlex">
                                 <div class="foto cFlex">
                                     <img src="${elem.tumbnail}" alt="">
@@ -59,7 +59,6 @@ async function renderProductos() {
                 </div>
                 `)
             }).join(" ")
-    
             document.getElementById("productos").innerHTML = html
         })
 }

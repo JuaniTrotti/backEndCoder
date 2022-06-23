@@ -64,14 +64,20 @@ body {
                     margin: 2.5px 0;
 
                     .producto {
-                        width: 98%;
+                        width: 99%;
                         height: 30px;
                         background-color: rgb(73, 73, 73);
                         justify-content: center;
+                        align-items: center;
 
                         h3 {
-                            color: white;
-                            width: 20%;
+                            color: rgb(255, 255, 255);
+                            width: 40%;
+                        }
+
+                        h4 {
+                            color: rgb(255, 255, 255);
+                            width: 10%;
                         }
 
                         .fotoContainer {

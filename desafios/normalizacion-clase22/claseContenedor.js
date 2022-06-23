@@ -1,5 +1,5 @@
-const fs = require('fs')
-
+// const fs = require('fs')
+import fs from 'fs';
 class Contenedor {
     constructor(ruta) {
         this.ruta = ruta;
@@ -110,4 +110,5 @@ class Contenedor {
     }
 }
 
-module.exports = Contenedor;
+export default Contenedor
+// module.exports = Contenedor;
