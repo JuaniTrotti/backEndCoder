@@ -1,9 +1,11 @@
 // const mongoose = require('mongoose');
 import mongoose from 'mongoose';
-const mensajesColection = 'nuevo'
+const mensajesColection = 'message'
 
 const mensajesSchema = new mongoose.Schema({
+    id: {type: Number, require: true, unique: true},
     author: {
+        id: {type: Number, require: true, unique: true},
         nombre: {type: String, required: true, max: 50},
         apellido: {type: String, required: true, max: 50},
         edad: {type: Number, required: true},

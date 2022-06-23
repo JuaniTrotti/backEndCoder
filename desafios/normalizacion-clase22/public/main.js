@@ -13,7 +13,7 @@ function addMessage(e) {
     return false
 }
 
-function render() {
+async function render() {
     await fetch("http://localhost:8080/api/mensajes")
     .then((res) => res.json())
     .then((data) => {
@@ -25,10 +25,8 @@ function render() {
             <em>${elem.text}</em>
             </div>`)
         }).join(" ")
-        document.getElementById("productos").innerHTML = html
+        document.getElementById("messages").innerHTML = html
     })
-
-    document.getElementById("messages").innerHTML = html
 }
 
 

@@ -10,37 +10,20 @@ import { createServer, get } from 'http';
 // const { Server: IOServer } = require('socket.io');
 import { Server } from 'socket.io'
 
-//mongoose models
+//mongoose models start
 import * as models from './models/messageModel.js'
-
-function genMes(x) {
-    return {
-        author: {
-            id: 1,
-            nombre: x.author,
-            apellido: faker.name.findName(),
-            edad: faker.random.numeric(2),
-            alias: faker.internet.userName(),
-            avatar: faker.internet.avatar()
-        },
-        text: x.message
-    }
-}
 
 //normalizr start
 import { normalize, denormalize, schema } from 'normalizr' 
 
 const user = new schema.Entity('user')
-const texto = new schema.Entity('texto')
-const autor = new schema.Entity('autor', {
-    author: user,
+const author = new schema.Entity('author', {
+    author: user
 })
+const text = new schema.Entity('text')
 const mess = new schema.Entity('mess', {
-    author: autor,
-    text: texto
-})
-const messageColl = new schema.Entity('messageColl', {
-    nombre: mess
+    author: author,
+    text: text,
 })
 
 import util from 'util'
@@ -49,19 +32,24 @@ function print(ob) {
 }
 
 async function processMess(x) {
-
-    console.log('objeto normalizado')
-    const normalizedMessage = normalize(x, messageColl)
-    // print(normalizedMessage)
-
-    const denormalizeMessage = denormalize(normalizedMessage.result, messageColl, normalizedMessage.entities)
-    // print(denormalizeMessage)
-
     let con = new MongoContenedor(models.mongoM);
     await con.connectMongo();
+    let mensajesGuardados = await con.leerMes()
+    
+    console.log('/* ---------------------------------------- *\\')
+    console.log('objeto normalizado')
+    const normalizedMessage = normalize(mensajesGuardados, mess)
+    print(normalizedMessage)
+    
+    console.log('objeto desnormalizado')
+    const denormalizeMessage = denormalize(normalizedMessage.result, mess, normalizedMessage.entities)
+    print(denormalizeMessage)
+    console.log('/* ---------------------------------------- *\\')
+    
     await con.crearMes(x)
 }
 //noramlizr end
+
 
 //faker mock start
 import { faker }from '@faker-js/faker';
@@ -76,11 +64,12 @@ function generarProducto() {
 }
 //faker end
 
+
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
-//Router config
+//Router config start
 const productRouter = Router();
 productRouter.use(express.json());
 app.use('/api', productRouter);
@@ -104,18 +93,19 @@ productRouter.get('/mensajes', async function(req, res) {
     let con = new MongoContenedor(models.mongoM);
     await con.connectMongo();
     let datos = await con.leerMes()
-    console.log(datos)
-    // let denormalizeDatos = denormalize(datos.result, messageColl, datos.entities)
-    // res.json(denormalizeDatos);
-});
 
+    console.log('esto esta en la base' )
+    console.log(datos)
+    res.json(datos);
+});
+//Router end
 
 //sockets starts
 const messages = [];
 const productos = new claseContenedor('./uploads/productos.json');
 
 io.on('connection', async (socket) => {
-    socket.emit('messages', messages)
+    socket.emit('messages')
     socket.emit('muestroProductos')
 
     socket.on('new-product', async (data) => {
@@ -123,17 +113,25 @@ io.on('connection', async (socket) => {
         io.sockets.emit('muestroProductos')
     })
 
-    socket.on('new-message', data => {
-        messages.push(data)
-        io.sockets.emit('messages', messages)
-    })
-
-    socket.on('procesar-mensaje', data => {
+    socket.on('procesar-mensaje', async data => {
         let datosNor = genMes(data);
-        processMess(datosNor)
+        await processMess(datosNor)
         io.sockets.emit('messages')
     })
 })
+
+function genMes(x) {
+    return {
+        author: {
+            nombre: x.author,
+            apellido: faker.name.findName(),
+            edad: faker.random.numeric(2),
+            alias: faker.internet.userName(),
+            avatar: faker.internet.avatar()
+        },
+        text: x.message
+    }
+}
 //sockets end
 
 //server settings
