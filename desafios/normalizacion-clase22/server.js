@@ -6,46 +6,65 @@ import MongoContenedor from './mongoContenedor.js'
 // const { Router } = express;
 import Router from "express";
 // const { Server: HttpServer } = require('http');
-import { createServer } from 'http';
+import { createServer, get } from 'http';
 // const { Server: IOServer } = require('socket.io');
 import { Server } from 'socket.io'
 
-//mongoose
-// const { mongoose } = require('mongoose');
-import mongoose from 'mongoose';
+//mongoose models
 import * as models from './models/messageModel.js'
-// const mongoM  = require('./models/messageModel').default
 
-// async function connectMongo() {
-//     try {
-//         const urlMongo = 'mongodb://localhost:27017/mensajesDesafio'
-//         await mongoose.connect(urlMongo)
-//         console.log('conectado a mongo')
-//     } catch {
-//         console.log('error conexion mongo')
-//     }
-// } 
-
-function genMes() {
+function genMes(x) {
     return {
         author: {
-            nombre: faker.name.firstName(),
+            id: 1,
+            nombre: x.author,
             apellido: faker.name.findName(),
             edad: faker.random.numeric(2),
             alias: faker.internet.userName(),
             avatar: faker.internet.avatar()
         },
-        text: faker.lorem.sentence(4)
+        text: x.message
     }
 }
 
-//normalizr
-// const { normalize, denormalize, schema } = require('normalizr');
+//normalizr start
 import { normalize, denormalize, schema } from 'normalizr' 
 
-//faker mock
+const user = new schema.Entity('user')
+const texto = new schema.Entity('texto')
+const autor = new schema.Entity('autor', {
+    author: user,
+})
+const mess = new schema.Entity('mess', {
+    author: autor,
+    text: texto
+})
+const messageColl = new schema.Entity('messageColl', {
+    nombre: mess
+})
+
+import util from 'util'
+function print(ob) {
+    console.log(util.inspect(ob,false,12,true))
+}
+
+async function processMess(x) {
+
+    console.log('objeto normalizado')
+    const normalizedMessage = normalize(x, messageColl)
+    // print(normalizedMessage)
+
+    const denormalizeMessage = denormalize(normalizedMessage.result, messageColl, normalizedMessage.entities)
+    // print(denormalizeMessage)
+
+    let con = new MongoContenedor(models.mongoM);
+    await con.connectMongo();
+    await con.crearMes(x)
+}
+//noramlizr end
+
+//faker mock start
 import { faker }from '@faker-js/faker';
-import { createRequire } from 'module';
 faker.locale = 'es';
 
 function generarProducto() {
@@ -55,6 +74,7 @@ function generarProducto() {
         thumbnail: faker.image.business()
     }
 }
+//faker end
 
 const app = express();
 const httpServer = createServer(app);
@@ -80,18 +100,21 @@ productRouter.get('/productos', async function (req, res) {
     res.json(newDatos);
 });
 
+productRouter.get('/mensajes', async function(req, res) {
+    let con = new MongoContenedor(models.mongoM);
+    await con.connectMongo();
+    let datos = await con.leerMes()
+    console.log(datos)
+    // let denormalizeDatos = denormalize(datos.result, messageColl, datos.entities)
+    // res.json(denormalizeDatos);
+});
 
-// sockets
+
+//sockets starts
 const messages = [];
 const productos = new claseContenedor('./uploads/productos.json');
 
 io.on('connection', async (socket) => {
-    let newus = new MongoContenedor(models.mongoM)
-    await newus.connectMongo()
-    await newus.crearMes(genMes())
-    console.log(await newus.leerMes())
-
-
     socket.emit('messages', messages)
     socket.emit('muestroProductos')
 
@@ -104,8 +127,16 @@ io.on('connection', async (socket) => {
         messages.push(data)
         io.sockets.emit('messages', messages)
     })
-})
 
+    socket.on('procesar-mensaje', data => {
+        let datosNor = genMes(data);
+        processMess(datosNor)
+        io.sockets.emit('messages')
+    })
+})
+//sockets end
+
+//server settings
 const PORT = 8080;
 httpServer.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

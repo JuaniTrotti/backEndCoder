@@ -1,27 +1,38 @@
 const socket = io.connect();
 
+
+//mensajes
 function addMessage(e) {
     const message = {
         author: document.getElementById("username").value,
         message: document.getElementById("text").value,
     }
 
-    socket.emit("new-message", message);
+    // socket.emit("new-message", message);
+    socket.emit("procesar-mensaje", message)
     return false
 }
 
-function render(data) {
-    const html = data.map((elem, index) => {
-        return(`<div>
-        <strong>${elem.author}</strong>
-        <strong>[${new Date().getDate()}/${new Date().getMonth()}:${new Date().getFullYear()}] [${new Date().getHours()}/${new Date().getMinutes()}]</strong>
-        <em>${elem.message}</em>
-        </div>`)
-    }).join(" ")
+function render() {
+    await fetch("http://localhost:8080/api/mensajes")
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data)
+        const html = data.map((elem, index) => {
+            return(`<div>
+            <strong>${elem.author.nombre}</strong>
+            <strong>[${elem.author.apellido}]</strong>
+            <em>${elem.text}</em>
+            </div>`)
+        }).join(" ")
+        document.getElementById("productos").innerHTML = html
+    })
 
     document.getElementById("messages").innerHTML = html
 }
 
+
+// productos
 function addProduct(e) {
     const producto = {
         title: document.getElementById("title").value,
@@ -63,5 +74,5 @@ async function renderProductos() {
         })
 }
 
-socket.on("messages", function(data) {render(data)})
+socket.on("messages", function() {render()})
 socket.on("muestroProductos", function() { renderProductos()})
