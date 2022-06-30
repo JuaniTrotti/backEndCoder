@@ -64,7 +64,7 @@ app.get('/login', (req, res) => {
     if (req.session.contador) {
         req.session.contador++
         let name = req.session.nombre
-        let cont = req.session.contador
+        let cont = req.session.contador - 1
         res.render('pages/index', {name, cont})
     } else {
         req.session.contador = 1
