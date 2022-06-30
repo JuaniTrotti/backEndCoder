@@ -15,6 +15,7 @@ import * as models from './models/messageModel.js'
 
 //normalizr start
 import { normalize, denormalize, schema } from 'normalizr' 
+// const { normalize, denormalize, schema } = require('normalizr');
 
 const user = new schema.Entity('user')
 const author = new schema.Entity('author', {
@@ -64,7 +65,6 @@ function generarProducto() {
 }
 //faker end
 
-
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
@@ -94,14 +94,12 @@ productRouter.get('/mensajes', async function(req, res) {
     await con.connectMongo();
     let datos = await con.leerMes()
 
-    console.log('esto esta en la base' )
-    console.log(datos)
     res.json(datos);
 });
 //Router end
 
 //sockets starts
-const messages = [];
+// const messages = [];
 const productos = new claseContenedor('./uploads/productos.json');
 
 io.on('connection', async (socket) => {
