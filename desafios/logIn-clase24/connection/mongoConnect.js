@@ -1,1 +1,0 @@
-export const urlMongoCon = 'mongodb+srv://juanitrotti:LZKYuy4d6JQGAuyC@juanignaciomongo.25f7r.mongodb.net/sessions?retryWrites=true&w=majority';
