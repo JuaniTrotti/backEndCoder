@@ -8,23 +8,33 @@
     <title>REGISTER</title>
 </head>
 <body>
-    <div class="regContainer cFlex">
+    <div class="boxContainer cFlex">
         <div class="formContainer cFlex">
-            <h2 class="title">Register</h2>
-            <form action="" class="containerForm cFlex">
-                <div class="cFlex">
-                    <h3 class="text">User</h3>
-                    <input type="text">
+            <div class="titleContainer cFlex">
+                <h2 class="title">Register</h2>
+            </div>
+            <form action="/register" method="post" class="containerForm cFlex">
+                <div class="userContainer cFlex">
+                    <h3 class="text">Email</h3>
+                    <input type="text" class="inputText" id="email" name="email">
                 </div>
 
-                <div class="cFlex">
+                <div class="userContainer cFlex">
+                    <h3 class="text">User</h3>
+                    <input type="text" class="inputText" id="user" name="user">
+                </div>
+
+                <div class="passContainer cFlex">
                     <h3 class="text">Password</h3>
-                    <input type="text">
+                    <input type="password" class="inputText" id="pass" name="password">
                 </div>
                 
-                <div class="cFlex">
-                    <input type="submit">
+                <div class="buttonContainer cFlex">
+                    <input type="submit" class="buttonStyle" value="Registrarse">
                 </div>
+            </form>
+            <form action="/login" method="get" class="optionContainer cFlex">
+                <input type="submit" class="buttonStyleSecundary" value="Iniciar sesion">
             </form>
         </div>
     </div>
