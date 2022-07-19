@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>REGISTER</title>
+</head>
+<body>
+    <div class="boxContainer cFlex">
+        <div class="formContainer cFlex">
+            <div class="titleContainer cFlex">
+                <h2 class="title">Register</h2>
+            </div>
+            <form action="/register" method="post" class="containerForm cFlex">
+                <div class="userContainer cFlex">
+                    <h3 class="text">Email</h3>
+                    <input type="text" class="inputText" id="email" name="email">
+                </div>
+
+                <div class="userContainer cFlex">
+                    <h3 class="text">User</h3>
+                    <input type="text" class="inputText" id="user" name="user">
+                </div>
+
+                <div class="passContainer cFlex">
+                    <h3 class="text">Password</h3>
+                    <input type="password" class="inputText" id="pass" name="password">
+                </div>
+                
+                <div class="buttonContainer cFlex">
+                    <input type="submit" class="buttonStyle" value="Registrarse">
+                </div>
+            </form>
+            <form action="/login" method="get" class="optionContainer cFlex">
+                <input type="submit" class="buttonStyleSecundary" value="Iniciar sesion">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
